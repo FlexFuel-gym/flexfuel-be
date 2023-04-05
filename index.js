@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 10000
@@ -8,6 +9,7 @@ const ProductRouter = require('./routes/product.router')
 const app = express()
 
 app.use(express.json())
+app.use(cors());
 app.use('/api/product', ProductRouter)
 
 const start = async () => {
