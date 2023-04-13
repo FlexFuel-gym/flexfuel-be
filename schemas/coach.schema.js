@@ -6,9 +6,7 @@ const schedule = {
 }
 
 const coachSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-  },
+  _id: Schema.Types.ObjectId,
   image: {
     type: String,
     required: true
@@ -17,7 +15,7 @@ const coachSchema = new Schema({
     type: String,
     required: true
   },
-  pricePerMonth: {
+  pricePerLesson: {
     type: Number,
     required: true
   },

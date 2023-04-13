@@ -1,4 +1,4 @@
-module.exports = class OrderDto {
+module.exports = class ProductOrderDto {
   id;
   productId;
   customerId;
