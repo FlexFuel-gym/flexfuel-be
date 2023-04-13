@@ -1,11 +1,11 @@
 const {Schema, model} = require('mongoose')
 
-const orderSchema = new Schema({
+const productOrderSchema = new Schema({
   _id: Schema.Types.ObjectId,
   customerId: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: 'customer',
+    ref: 'product-customer',
   },
   productId: {
     type: Schema.Types.ObjectId,
@@ -14,4 +14,4 @@ const orderSchema = new Schema({
   }
 })
 
-module.exports = model('order', orderSchema)
+module.exports = model('product-order', productOrderSchema)

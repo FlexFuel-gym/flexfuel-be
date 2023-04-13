@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const ProductSchema = require('../schemas/product.schema')
-const CustomerSchema = require('../schemas/customer.schema')
-const OrderSchema = require('../schemas/order.schema')
-const CustomerDto = require('../dtos/customer.dto')
+const CustomerSchema = require('../schemas/product-customer.schema')
+const ProductOrderSchema = require('../schemas/product-order.schema')
+const CustomerDto = require('../dtos/product-customer.dto')
 const ProductDto = require('../dtos/product.dto')
-const OrderDto = require('../dtos/order.dto')
+const ProductOrderDto = require('../dtos/product-order.dto')
 
 class ProductService {
   async getProducts(page = 1, count = 10) {
@@ -53,7 +53,7 @@ class ProductService {
       _id: new mongoose.Types.ObjectId(),
       ...customerData
     })
-    const order = await OrderSchema.create({
+    const order = await ProductOrderSchema.create({
       _id: new mongoose.Types.ObjectId(),
       customerId: customer._id,
       productId,
@@ -61,7 +61,7 @@ class ProductService {
 
     return {
       customer: new CustomerDto(customer),
-      order: new OrderDto(order)
+      order: new ProductOrderDto(order)
     }
   }
 }

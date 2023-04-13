@@ -10,7 +10,7 @@ module.exports = class CoachDto {
     this.image = model.image;
     this.fullName = model.fullName
     this.description = model.description
-    this.pricePerMonth = model.pricePerMonth
+    this.pricePerLesson = model.pricePerLesson
     this.schedule = model.schedule.map(item => ({
       periodOfTime: item.periodOfTime,
       isAvailable: item.isAvailable

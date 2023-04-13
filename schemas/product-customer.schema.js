@@ -1,9 +1,7 @@
 const {Schema, model} = require('mongoose')
 
-const customerSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-  },
+const productCustomerSchema = new Schema({
+  _id: Schema.Types.ObjectId,
   fullName: {
     type: String,
     required: true
@@ -26,4 +24,4 @@ const customerSchema = new Schema({
   }
 })
 
-module.exports = model('customer', customerSchema)
+module.exports = model('product-customer', productCustomerSchema)

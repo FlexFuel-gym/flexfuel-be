@@ -2,8 +2,10 @@ require('dotenv').config()
 const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose')
+const cron = require("node-cron");
 const PORT = process.env.PORT || 10000
 
+const CoachSchema = require('./schemas/coach.schema')
 const ProductRouter = require('./routes/product.router')
 const CoachRouter = require('./routes/coach.router')
 
@@ -25,3 +27,23 @@ const start = async () => {
 }
 
 start()
+
+// Runs every day in 24:00
+cron.schedule('0 0 0 * * *', async () => {
+  console.log('Start updating...')
+  const coaches = await CoachSchema.find();
+
+  try {
+    for (let coach of coaches) {
+      coach.schedule.forEach((i) => {
+        i.isAvailable = true
+      })
+
+      await coach.save()
+    }
+
+    console.log('Success updated!')
+  } catch (err) {
+    console.log('Error while update coaches: ', err.message)
+  }
+})
