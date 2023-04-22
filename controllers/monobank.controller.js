@@ -1,9 +1,10 @@
 const MonobankService = require('../services/monobank.service')
 
 class MonobankController {
-  async getTransactions(req, res, next) {
+  async getTransaction(req, res, next) {
     try {
-      const data = await MonobankService.getTransactions()
+      const {'transaction-id': transactionId} = req.query
+      const data = await MonobankService.getTransaction(transactionId)
 
       res.status(200).send({data, success: true})
     } catch (e) {

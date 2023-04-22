@@ -3,6 +3,6 @@ const MonobankController = require('../controllers/monobank.controller')
 
 const router = Router()
 
-router.get('/transactions', MonobankController.getTransactions)
+router.get('/transaction', MonobankController.getTransaction)
 
 module.exports = router

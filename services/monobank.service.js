@@ -3,7 +3,7 @@ const request = require("request-promise");
 const cache = new NodeCache()
 
 class MonobankService {
-  async getTransactions() {
+  async getTransaction(transactionId) {
     const cacheKey = 'transactions';
 
     if (!cache.has(cacheKey)) {
@@ -25,9 +25,18 @@ class MonobankService {
       cache.set(cacheKey, response, 60)
     }
 
-    return {
-      transactions: JSON.parse(cache.get(cacheKey))
+    const transaction = JSON.parse(cache.get(cacheKey)).find(transaction => {
+      if (!transaction.comment) {
+        return false;
+      }
+      return transaction.comment?.trim() === transactionId;
+    })
+
+    if (!transaction) {
+      throw Error('Платіж не здійснено, спробуйте ще раз через 1 хвилину')
     }
+
+    return {transaction}
   }
 }
 
