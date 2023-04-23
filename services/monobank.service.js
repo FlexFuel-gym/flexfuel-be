@@ -29,7 +29,7 @@ class MonobankService {
       if (!transaction.comment) {
         return false;
       }
-      return transaction.comment?.trim() === transactionId;
+      return transaction.comment?.trim() === transactionId && transaction.amount >= 1000;
     })
 
     if (!transaction) {
