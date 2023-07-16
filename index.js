@@ -50,4 +50,6 @@ return start().then(() => {
       console.log('Error while update coaches: ', err.message)
     }
   })
+
+  return 0
 })
