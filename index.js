@@ -9,7 +9,6 @@ const CoachSchema = require('./schemas/coach.schema')
 const ProductRouter = require('./routes/product.router')
 const CoachRouter = require('./routes/coach.router')
 const MonobankRouter = require('./routes/monobank.router')
-const OauthRouter = require('./routes/oauth.router')
 
 const app = express()
 
@@ -18,7 +17,6 @@ app.use(cors());
 app.use('/api/product', ProductRouter)
 app.use('/api/coach', CoachRouter)
 app.use('/api/monobank', MonobankRouter)
-app.use('/api/oauth', OauthRouter)
 
 const start = async () => {
   await mongoose.connect(process.env.MONGO_LINK).then(() => {
